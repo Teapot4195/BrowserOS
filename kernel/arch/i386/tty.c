@@ -56,3 +56,9 @@ void terminal_write(const char* data, size_t size) {
 void terminal_writestring(const char* data) {
 	terminal_write(data, strlen(data));
 }
+
+void terminal_panic(const char* data, size_t size) {
+	terminal_putchar('\n');
+	terminal_putchar('\n');
+	terminal_write(data, size);
+}

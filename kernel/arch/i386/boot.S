@@ -29,11 +29,16 @@ _start:
 	# Call the global constructors.
 	call _init
 
-	# Transfer control to the main kernel.
-	call kernel_main
+    # Transfer control to the main kernel.
+    call kernel_main
 
-	# Hang if kernel_main unexpectedly returns.
-	cli
-1:	hlt
-	jmp 1b
+    jmp panic_hang
+
+.global panic_hang
+.type panic_hang, @function
+panic_hang:
+    cli
+2:  hlt
+    jmp 2b
+
 .size _start, . - _start
