@@ -24,10 +24,28 @@ stack_top:
 .global _start
 .type _start, @function
 _start:
-	movl $stack_top, %esp
+    movl $stack_top, %esp
 
-	# Call the global constructors.
-	call _init
+    # Call the global constructors.
+    call _init
+
+    # BEGIN: Kernel init block
+
+    # TODO: Ensure we are in real mode.
+
+    # Terminal is initialized early so we can use it here and in kernel_real
+    # that is, it will run even if the kernel initialization routine needs to
+    # kpanic.
+    call terminal_initialize
+
+    # Call kernel real mode initializer
+    call kernel_real
+
+    # TODO: A20 Line
+
+    # TODO: Ensure we are in protected mode.
+
+    # END: Kernel init block
 
     # Transfer control to the main kernel.
     call kernel_main
