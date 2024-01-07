@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include <kernel/tty.h>
-#include <kernel/iasm.h>
+#include <kernel/sys.h>
 
 /**
  * Kernel C code that expects to be run in real mode, do it before we switch to
