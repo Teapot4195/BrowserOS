@@ -2,7 +2,7 @@
 
 #include <kernel/tty.h>
 
-extern void panic_hang(void);
+extern _Noreturn void panic_hang(void);
 
 /*
  * Kernel panic routine.
